@@ -22,12 +22,29 @@ namespace HW2_3
 
         }
 
+
         private void button2_Click(object sender, EventArgs e) {
-            label3.Text = radioButton1.Text;
+            label3.Text = getSelectedRadioButtonName();
         }
+
+        private String getSelectedRadioButtonName() {
+
+            foreach (Control c in groupBox2.Controls)
+            {
+                if (c is RadioButton && ((RadioButton)c).Checked == true)
+                {
+                    return c.Text;
+                }
+            }
+            return "什麼都沒有選";
+        }
+
 
         private void Form1_Load(object sender, EventArgs e) {
             
         }
+
+        
+
     }
 }
