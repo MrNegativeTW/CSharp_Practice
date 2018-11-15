@@ -21,21 +21,24 @@ namespace HW2_5
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
-            label2.Left -= 1;
+            label2.Left -= 3;
             if (label2.Left <= 0) {
                 timer2.Enabled = true;
-            } else if (label2.Left <= -99) {
-                label2.Left = 522;
+            }
+            if (label2.Left <= -99) {
+                label2.Left = this.ClientSize.Width;
                 timer1.Enabled = false;
             }
+            label3.Text = label1.Left.ToString()+":" + label2.Left.ToString();
         }
 
         private void timer2_Tick(object sender, EventArgs e) {
-            label1.Left -= 1;
+            label1.Left -= 3;
             if (label1.Left <= 0) {
                 timer1.Enabled = true;
-            } else if (label1.Left <= -99) {
-                label1.Left = 522;
+            }
+            if (label1.Left <= -99) {
+                label1.Left = this.ClientSize.Width;
                 timer2.Enabled = false;
             }
         }

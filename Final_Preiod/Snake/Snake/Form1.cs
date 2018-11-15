@@ -39,5 +39,10 @@ namespace Snake
                 MessageBox.Show("請輸入正確的數字，謝謝惠顧。");
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
