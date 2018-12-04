@@ -39,7 +39,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(213, 9);
+            this.label1.Location = new System.Drawing.Point(144, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 38);
             this.label1.TabIndex = 0;
@@ -48,9 +48,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(518, 9);
+            this.button1.Location = new System.Drawing.Point(150, 157);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 28);
+            this.button1.Size = new System.Drawing.Size(138, 24);
             this.button1.TabIndex = 1;
             this.button1.Text = "?";
             this.button1.UseVisualStyleBackColor = true;
@@ -58,21 +58,23 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(216, 71);
+            this.button2.Location = new System.Drawing.Point(150, 57);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 44);
             this.button2.TabIndex = 2;
             this.button2.Text = ">";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(216, 121);
+            this.button3.Location = new System.Drawing.Point(150, 107);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(138, 44);
             this.button3.TabIndex = 3;
             this.button3.Text = "<";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // listBox1
             // 
@@ -83,9 +85,9 @@
             "青菜",
             "野狼傳奇",
             "山羊"});
-            this.listBox1.Location = new System.Drawing.Point(12, 71);
+            this.listBox1.Location = new System.Drawing.Point(12, 57);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(198, 124);
+            this.listBox1.Size = new System.Drawing.Size(132, 124);
             this.listBox1.TabIndex = 4;
             // 
             // listBox2
@@ -96,16 +98,16 @@
             "123",
             "123",
             "132"});
-            this.listBox2.Location = new System.Drawing.Point(360, 71);
+            this.listBox2.Location = new System.Drawing.Point(294, 57);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(198, 124);
+            this.listBox2.Size = new System.Drawing.Size(132, 124);
             this.listBox2.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 218);
+            this.ClientSize = new System.Drawing.Size(440, 190);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
@@ -114,7 +116,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HW3-3";

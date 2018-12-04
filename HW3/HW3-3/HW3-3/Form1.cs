@@ -19,9 +19,20 @@ namespace HW3_3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("1. 農夫一次只能帶一樣東西 或 空手過河" + 
+            MessageBox.Show(
+                "1. 農夫一次只能帶一樣東西 或 空手過河" + 
                 "\n2. 農夫不在時山羊會吃青菜，野狼會吃山羊" +
-                "\n3. 3件都過河就過關");
+                "\n3. 3件都過河就過關" ,"Rules");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
