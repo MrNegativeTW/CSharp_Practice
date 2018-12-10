@@ -9,12 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace Snake
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace Snake {
+    public partial class Form1 : Form {
+        public Form1() {
             InitializeComponent();
         }
 
@@ -32,11 +29,24 @@ namespace Snake
 
         //Donate Button
         private void button1_Click(object sender, EventArgs e) {
-            MessageBox.Show("Demo");
-            System.Diagnostics.Process.Start("https://www.organicsoupkitchen.org/donate");
-        }
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            const string message ="https://www.organicsoupkitchen.org/donate" + "\n台科大南部分校提醒您，不明連結可能包含惡意程式";
+            //messagebox color don,t change
+            const string caption = "Form Closing";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
 
-        //Game Start Button
+            // If the no button was pressed ...
+            if (result == DialogResult.Yes) {
+                System.Diagnostics.Process.Start("https://www.organicsoupkitchen.org/donate");
+            }
+            // cancel the closure of the form.
+            // this.Dispose();
+        }
+    
+            //Game Start Button
         
         private void button2_Click(object sender, EventArgs e) {
 
@@ -114,6 +124,7 @@ namespace Snake
             //Release Memory
             pictureBox1.Image.Dispose();
             pictureBox1.Image = Properties.Resources.Radeon_VR_Ready;
+            this.Text = "越吃越肥 | Radeon VR Ready";
         }
 
         //Cover Pic
@@ -121,8 +132,26 @@ namespace Snake
             //Release Memory
             pictureBox1.Image.Dispose();
             pictureBox1.Image = Properties.Resources.GeForce_RTX_01;
+            this.Text = "越吃越肥 | Powered by Geforce RTX";
         }
 
-        
+        private void Form1_Load(object sender, EventArgs e) {
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == (Char)48 || e.KeyChar == (Char)49 ||
+               e.KeyChar == (Char)50 || e.KeyChar == (Char)51 ||
+               e.KeyChar == (Char)52 || e.KeyChar == (Char)53 ||
+               e.KeyChar == (Char)54 || e.KeyChar == (Char)55 ||
+               e.KeyChar == (Char)56 || e.KeyChar == (Char)57 ||
+               e.KeyChar == (Char)13 || e.KeyChar == (Char)8) {
+                e.Handled = false;
+            } else {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -45,8 +45,10 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,14 +56,14 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Normal",
-            "Borderless"});
+            "視窗化",
+            "無邊框視窗"});
             this.comboBox1.Location = new System.Drawing.Point(201, 32);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(142, 25);
             this.comboBox1.TabIndex = 2;
-            this.comboBox1.Text = "Normal";
+            this.comboBox1.Text = "視窗化";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
@@ -78,14 +80,14 @@
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "Enable",
-            "Disable"});
+            "啟用",
+            "停用"});
             this.comboBox2.Location = new System.Drawing.Point(201, 75);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(142, 25);
             this.comboBox2.TabIndex = 3;
-            this.comboBox2.Text = "Enable";
+            this.comboBox2.Text = "啟用";
             // 
             // label3
             // 
@@ -101,9 +103,11 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(201, 119);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.textBox1.MaxLength = 3;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(142, 25);
             this.textBox1.TabIndex = 4;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // button1
             // 
@@ -176,12 +180,13 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(462, 178);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Input";
+            this.tabPage2.Text = "Help ?";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // timer1
@@ -206,6 +211,15 @@
             this.timer2.Interval = 6000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(3, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(456, 161);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Powered by GeForce RTX | Radeon VR Ready\r\n\r\n感謝您下載本遊戲，分數欄留空可不賭博，反之賭博。\r\n\r\n遊玩本遊戲同時表示" +
+    "您同意本遊戲之隱私權政策：\r\n本遊戲會在執行時，默默於背景蒐集及分析您的滑鼠活動，以供本公司進行產品改良。";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -224,10 +238,12 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "越吃越肥";
+            this.Text = "越吃越肥 | Powered by Geforce RTX ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -250,6 +266,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label label4;
     }
 }
 
