@@ -37,7 +37,7 @@ namespace Snake
         }
 
         //Game Start Button
-        int money = 0;
+        
         private void button2_Click(object sender, EventArgs e) {
 
             /*
@@ -69,9 +69,9 @@ namespace Snake
             XmlElement BackColor = doc.CreateElement("BackColor");
             //設定屬性
             if (comboBox2.Text == "Enable") {
-                BackColor.SetAttribute("value", "Enable");
+                BackColor.SetAttribute("value", "enable");
             } else if (comboBox2.Text == "Disable") {
-                BackColor.SetAttribute("value", "Disable");
+                BackColor.SetAttribute("value", "disable");
             }
             //加入至 BackColor 節點底下
             Settings.AppendChild(BackColor);
@@ -84,23 +84,26 @@ namespace Snake
             //設定屬性
 
             //Check Number
+            int money = 0;
+
             try {
-                money = Convert.ToInt32(textBox1.Text);
+                if (string.IsNullOrEmpty(textBox1.Text)) {
+                    Money.SetAttribute("value", "0");
+                } else {
+                    money = Convert.ToInt32(textBox1.Text);
+                    Money.SetAttribute("value", textBox1.Text);
+                }
             } catch {
                 MessageBox.Show("請輸入正確的數字，謝謝惠顧。");
             }
-            Money.SetAttribute("value", textBox1.Text);
+            
 
             //加入至 BackColor 節點底下
             Settings.AppendChild(Money);
 
             //存檔
-            doc.Save("Test.xml");
+            doc.Save("settings.xml");
 
-
-
-
-           
         }
 
         // Quit Button
