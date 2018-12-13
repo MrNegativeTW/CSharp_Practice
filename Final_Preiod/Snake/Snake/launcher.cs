@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using System.Xml;
 
 namespace Snake {
-    public partial class Form1 : Form {
-        public Form1() {
+    public partial class launcher : Form {
+        public launcher() {
             InitializeComponent();
         }
 
@@ -27,8 +27,9 @@ namespace Snake {
             */
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
+
+        //Numbers only
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
             if (e.KeyChar == (Char)48 || e.KeyChar == (Char)49 ||
                e.KeyChar == (Char)50 || e.KeyChar == (Char)51 ||
                e.KeyChar == (Char)52 || e.KeyChar == (Char)53 ||
@@ -37,9 +38,7 @@ namespace Snake {
                e.KeyChar == (Char)13 || e.KeyChar == (Char)8)
             {
                 e.Handled = false;
-            }
-            else
-            {
+            } else {
                 e.Handled = true;
             }
         }
@@ -63,66 +62,46 @@ namespace Snake {
 
             /*
              * Source : https://dotblogs.com.tw/yc421206/archive/2010/08/10/17108.aspx
+             * Settings to XML
              */
 
             //Init XML
             XmlDocument doc = new XmlDocument();
             XmlElement Settings = doc.CreateElement("Settings");
             doc.AppendChild(Settings);
-
-            /*
-             * Create Child Node - Window Mode
-             */
+            
+            //Create Child Node - Window Mode
             XmlElement Window = doc.CreateElement("Window");
-            //設定屬性
-            if (comboBox1.Text == "Normal") {
+            if (comboBox1.Text == "視窗化") {
                 Window.SetAttribute("value", "normal");
-            } else if (comboBox1.Text == "Borderless") {
+            } else if (comboBox1.Text == "無邊框視窗") {
                 Window.SetAttribute("value", "borderLess");
             }
-            //加入至 Window 節點底下
             Settings.AppendChild(Window);
 
-
-            /*
-             * Create Child Node - Backgroung Color Change or Not
-             */
+            //Create Child Node - Backgroung Color Change or Not
             XmlElement BackColor = doc.CreateElement("BackColor");
-            //設定屬性
-            if (comboBox2.Text == "Enable") {
+            if (comboBox2.Text == "啟用") {
                 BackColor.SetAttribute("value", "enable");
-            } else if (comboBox2.Text == "Disable") {
+            } else if (comboBox2.Text == "停用") {
                 BackColor.SetAttribute("value", "disable");
             }
-            //加入至 BackColor 節點底下
             Settings.AppendChild(BackColor);
 
 
-            /*
-             * Create Child Node - Money
-             */
+            //Create Child Node - Money
             XmlElement Money = doc.CreateElement("Money");
-            //設定屬性
-
-            //Check Number
             int money = 0;
-
-            try {
-                if (string.IsNullOrEmpty(textBox1.Text)) {
-                    Money.SetAttribute("value", "0");
-                } else {
-                    money = Convert.ToInt32(textBox1.Text);
-                    Money.SetAttribute("value", textBox1.Text);
-                }
-            } catch {
-                MessageBox.Show("請輸入正確的數字，謝謝惠顧。");
+            if (string.IsNullOrEmpty(textBox1.Text)) {
+                Money.SetAttribute("value", "0");
+            } else {
+                money = Convert.ToInt32(textBox1.Text);
+                Money.SetAttribute("value", textBox1.Text);
             }
-            
-
-            //加入至 BackColor 節點底下
             Settings.AppendChild(Money);
 
-            //存檔
+
+            //Save XML File
             doc.Save("settings.xml");
 
         }
