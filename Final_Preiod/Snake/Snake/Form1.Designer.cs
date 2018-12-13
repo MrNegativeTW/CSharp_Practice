@@ -42,10 +42,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -63,7 +63,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(142, 25);
             this.comboBox1.TabIndex = 2;
-            this.comboBox1.Text = "視窗化";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
@@ -189,6 +188,15 @@
             this.tabPage2.Text = "Help ?";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(3, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(456, 161);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Powered by GeForce RTX | Radeon VR Ready\r\n\r\n感謝您下載本遊戲，分數欄留空可不賭博，反之賭博。\r\n\r\n遊玩本遊戲同時表示" +
+    "您同意本遊戲之隱私權政策：\r\n本遊戲會在執行時，默默於背景蒐集及分析您的滑鼠活動，以供本公司進行產品改良。";
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -210,15 +218,6 @@
             this.timer2.Enabled = true;
             this.timer2.Interval = 6000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(3, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(456, 161);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Powered by GeForce RTX | Radeon VR Ready\r\n\r\n感謝您下載本遊戲，分數欄留空可不賭博，反之賭博。\r\n\r\n遊玩本遊戲同時表示" +
-    "您同意本遊戲之隱私權政策：\r\n本遊戲會在執行時，默默於背景蒐集及分析您的滑鼠活動，以供本公司進行產品改良。";
             // 
             // Form1
             // 

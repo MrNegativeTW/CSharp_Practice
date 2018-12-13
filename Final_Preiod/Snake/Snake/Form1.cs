@@ -15,7 +15,7 @@ namespace Snake {
             InitializeComponent();
         }
 
-        //Select Border or not
+        //Snap: Change Border
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
             /* Change Form Border
             if (comboBox1.Text == "Normal") {
@@ -27,27 +27,38 @@ namespace Snake {
             */
         }
 
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (Char)48 || e.KeyChar == (Char)49 ||
+               e.KeyChar == (Char)50 || e.KeyChar == (Char)51 ||
+               e.KeyChar == (Char)52 || e.KeyChar == (Char)53 ||
+               e.KeyChar == (Char)54 || e.KeyChar == (Char)55 ||
+               e.KeyChar == (Char)56 || e.KeyChar == (Char)57 ||
+               e.KeyChar == (Char)13 || e.KeyChar == (Char)8)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
         //Donate Button
         private void button1_Click(object sender, EventArgs e) {
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            const string message ="https://www.organicsoupkitchen.org/donate" + "\n台科大南部分校提醒您，不明連結可能包含惡意程式";
-            //messagebox color don,t change
-            const string caption = "Form Closing";
-            var result = MessageBox.Show(message, caption,
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
+            var result = MessageBox.Show(
+                "https://www.organicsoupkitchen.org/donate" + "\n台科大南部分校提醒您，不明連結可能包含惡意程式\n\n按「是」繼續前往", 
+                "即將開啟連結", 
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Warning);
 
-            // If the no button was pressed ...
             if (result == DialogResult.Yes) {
                 System.Diagnostics.Process.Start("https://www.organicsoupkitchen.org/donate");
             }
-            // cancel the closure of the form.
-            // this.Dispose();
         }
     
-            //Game Start Button
-        
+
+        //Game Start Button
         private void button2_Click(object sender, EventArgs e) {
 
             /*
@@ -116,10 +127,13 @@ namespace Snake {
 
         }
 
+
         // Quit Button
         private void button3_Click(object sender, EventArgs e) { this.Dispose(); }
 
-        //Cover Pic
+
+
+        //Cover Picture
         private void timer1_Tick(object sender, EventArgs e) {
             //Release Memory
             pictureBox1.Image.Dispose();
@@ -127,7 +141,7 @@ namespace Snake {
             this.Text = "越吃越肥 | Radeon VR Ready";
         }
 
-        //Cover Pic
+        //Cover Picture
         private void timer2_Tick(object sender, EventArgs e) {
             //Release Memory
             pictureBox1.Image.Dispose();
@@ -138,20 +152,8 @@ namespace Snake {
         private void Form1_Load(object sender, EventArgs e) {
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
-            if (e.KeyChar == (Char)48 || e.KeyChar == (Char)49 ||
-               e.KeyChar == (Char)50 || e.KeyChar == (Char)51 ||
-               e.KeyChar == (Char)52 || e.KeyChar == (Char)53 ||
-               e.KeyChar == (Char)54 || e.KeyChar == (Char)55 ||
-               e.KeyChar == (Char)56 || e.KeyChar == (Char)57 ||
-               e.KeyChar == (Char)13 || e.KeyChar == (Char)8) {
-                e.Handled = false;
-            } else {
-                e.Handled = true;
-            }
-        }
+        
     }
 }
