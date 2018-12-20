@@ -32,14 +32,21 @@ namespace HW4_2
                 }
                 label1.Text += "\n";
             }
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    ar2[j, 9 - i] = ar[i, j];
+                }
+            }
+
 
             label2.Text = "";
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    ar2[j, 9 - i] = ar[i, j];
-                    label2.Text += String.Format("{0: 0}", ar[i, j]);
+                    label2.Text += String.Format("{0: 00}", ar2[i, j]);
                 }
                 label2.Text += "\n";
             }
