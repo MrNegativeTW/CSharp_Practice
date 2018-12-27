@@ -106,7 +106,7 @@ namespace Snake {
             doc.Save("settings.xml");
 
             // Start Main Game
-            Process.Start("snake_main.exe");
+            Process.Start("rpf.exe");
         }
 
 
