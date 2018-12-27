@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Diagnostics;
 
 namespace Snake {
     public partial class launcher : Form {
@@ -59,7 +60,7 @@ namespace Snake {
 
         //Game Start Button
         private void button2_Click(object sender, EventArgs e) {
-
+            
             /*
              * Source : https://dotblogs.com.tw/yc421206/archive/2010/08/10/17108.aspx
              * Settings to XML
@@ -104,6 +105,8 @@ namespace Snake {
             //Save XML File
             doc.Save("settings.xml");
 
+            // Start Main Game
+            Process.Start("snake_main.exe");
         }
 
 
