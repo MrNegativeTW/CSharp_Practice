@@ -43,7 +43,7 @@
             this.GameCanvas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.GameCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.GameCanvas.Location = new System.Drawing.Point(5, 4);
-            this.GameCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GameCanvas.Margin = new System.Windows.Forms.Padding(4);
             this.GameCanvas.Name = "GameCanvas";
             this.GameCanvas.Size = new System.Drawing.Size(724, 522);
             this.GameCanvas.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             this.Start_Btn.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Start_Btn.Location = new System.Drawing.Point(5, 535);
-            this.Start_Btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Start_Btn.Margin = new System.Windows.Forms.Padding(4);
             this.Start_Btn.Name = "Start_Btn";
             this.Start_Btn.Size = new System.Drawing.Size(136, 40);
             this.Start_Btn.TabIndex = 1;
@@ -81,7 +81,7 @@
             // 
             this.exit_btn.Font = new System.Drawing.Font("微軟正黑體", 11.25F);
             this.exit_btn.Location = new System.Drawing.Point(148, 535);
-            this.exit_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exit_btn.Margin = new System.Windows.Forms.Padding(4);
             this.exit_btn.Name = "exit_btn";
             this.exit_btn.Size = new System.Drawing.Size(136, 40);
             this.exit_btn.TabIndex = 5;
@@ -111,7 +111,8 @@
             this.Controls.Add(this.Start_Btn);
             this.Controls.Add(this.GameCanvas);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SnakeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "越吃越長";

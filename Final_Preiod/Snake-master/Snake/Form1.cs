@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Xml;
 
 namespace Snake
 {
@@ -126,6 +127,58 @@ namespace Snake
         }
 
         private void SnakeForm_Load(object sender, EventArgs e) {
+
+            // --設定邊框--
+            // 讀取設定檔
+            XmlDocument doc = new XmlDocument();
+            doc.Load("settings.xml");
+            // 選擇節點
+            XmlNode Window = doc.SelectSingleNode("Settings/Window");
+            // 取得節點 欄位
+            XmlElement Windowelement = (XmlElement)Window;
+            // 取得節點 內容
+            string Windowdata = Windowelement.GetAttribute("value");
+            // 取得節點 屬性
+            XmlAttribute attribute = Windowelement.GetAttributeNode("value");
+            // 列出節點內的屬性
+            XmlAttributeCollection attributes = Windowelement.Attributes;
+            foreach (XmlAttribute item in attributes) {
+                if (item.Value == "normal") {
+                    this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+                } else if (item.Value == "borderLess") {
+                    this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                }
+            }
+
+            // --設定背景變色--
+            // 選擇節點
+            XmlNode BackColor = doc.SelectSingleNode("Settings/BackColor");
+            // 取得節點 欄位
+            XmlElement BackColorElement = (XmlElement)BackColor;
+            // 取得節點 內容
+            string BackColorData = BackColorElement.GetAttribute("value");
+            // 取得節點 屬性
+            XmlAttribute BackColorAttribute = BackColorElement.GetAttributeNode("value");
+            // 列出節點內的屬性
+            XmlAttributeCollection BackColorattribute = BackColorElement.Attributes;
+            foreach (XmlAttribute item in BackColorattribute)
+            {
+                if (item.Value == "enable")
+                {
+                    MessageBox.Show("Enable");   
+                }
+                else if (item.Value == "disable")
+                {
+                    MessageBox.Show("Disable");
+                }
+            }
+
+
+
+
+
+
+
 
         }
 
