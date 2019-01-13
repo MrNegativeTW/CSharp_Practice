@@ -106,17 +106,11 @@ namespace Snake
                 OnHitSelf(); // If so, trigger the game-over screen
         }
 
-        /// <summary>
-        /// Determines whether the snake is intersecting with itself
-        /// </summary>
-        /// <returns>Whether the snake is intersecting with itself</returns>
-        public bool IsSelfIntersecting()
-        {
-            // Check each snake body part with every other snake body part
-            for(int i=0;i < m_SnakeParts.Count;i++)
-            {
-                for (int j = 0;j < m_SnakeParts.Count; j++)
-                {
+        // 偵測自撞
+        public bool IsSelfIntersecting() {
+            // 檢查每一部位與其他部位是否香蕉
+            for(int i=0;i < m_SnakeParts.Count;i++) {
+                for (int j = 0;j < m_SnakeParts.Count; j++) {
                     if(i == j) // Do not want to check a body part with itself
                         continue;
                     BodyPart part1 = m_SnakeParts[i];
@@ -131,13 +125,8 @@ namespace Snake
             return false;
         }
 
-        /// <summary>
-        /// Sets the direction of the snake head
-        /// </summary>
-        /// <param name="Dir">Direction to set the head to</param>
-        public void SetDirection(Direction Dir)
-        {
-            // Forbid 180 degree turns
+        // 設定蛇頭方向
+        public void SetDirection(Direction Dir) {
             if (m_MoveDirection == Direction.left && Dir == Direction.right)
                 return;
 
@@ -150,7 +139,7 @@ namespace Snake
             if (m_MoveDirection == Direction.down && Dir == Direction.up)
                 return;
 
-            // Set the direction if the direction change is legal
+            // 若轉向正常，則轉向
             m_MoveDirection = Dir;
         }
 

@@ -7,9 +7,7 @@ using System.Drawing;
 
 namespace Snake
 {
-    /// <summary>
-    /// Manages food pellets, including spawning, destruction, and collision detection
-    /// </summary>
+    // 食物生成系統
     class FoodManager
     {
         private Random r = new Random(); // Used for generating random variables in this class

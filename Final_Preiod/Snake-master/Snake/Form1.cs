@@ -161,26 +161,31 @@ namespace Snake
             XmlAttribute BackColorAttribute = BackColorElement.GetAttributeNode("value");
             // 列出節點內的屬性
             XmlAttributeCollection BackColorattribute = BackColorElement.Attributes;
-            foreach (XmlAttribute item in BackColorattribute)
-            {
-                if (item.Value == "enable")
-                {
-                    MessageBox.Show("Enable");   
-                }
-                else if (item.Value == "disable")
-                {
+            foreach (XmlAttribute item in BackColorattribute) {
+                if (item.Value == "enable") {
+                    //背景變色
+                    rgb();
+                }/* else if (item.Value == "disable") {
                     MessageBox.Show("Disable");
-                }
+                    // 背景不變色，暫時隱藏
+                }*/
             }
 
 
 
 
-
-
-
-
         }
+
+        // RGB Background!
+        private async void rgb() {
+            do {
+                Random color = new Random();
+                Color randomColor = Color.FromArgb(color.Next(255), color.Next(255), color.Next(255));
+                this.GameCanvas.BackColor = randomColor;
+                await Task.Delay(250);
+            } while (true);
+        }
+
 
         private void exit_btn_Click(object sender, EventArgs e) {
             this.Close();

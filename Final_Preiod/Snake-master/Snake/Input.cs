@@ -7,19 +7,13 @@ using System.Windows.Forms;
 
 namespace Snake
 {
-    /// <summary>
-    /// Manages keyboard input for the game
-    /// </summary>
+    // 鍵入管理系統
     class Input
     {
-        // Stores a mapping of keyboard keys to whether the button is pressed
+        // 儲存鍵盤按鍵
         private static Dictionary<Keys,bool> KeyTable = new Dictionary<Keys,bool>();
 
-        /// <summary>
-        /// Gets whether a key is held down.
-        /// </summary>
-        /// <param name="key">Key to check if held</param>
-        /// <returns>Whether the key was held down</returns>
+        // 鍵入判定
         public static bool IsKeyDown(Keys key)
         {
             bool KeyState;
@@ -30,11 +24,6 @@ namespace Snake
             return false;
         }
 
-        /// <summary>
-        /// Sets a keyboard button to be pressed or released
-        /// </summary>
-        /// <param name="key">Key to set</param>
-        /// <param name="IsDown">Value to set the key to, true meaning pressed</param>
         public static void SetKey(Keys key,bool IsDown)
         {
             KeyTable[key] = IsDown;

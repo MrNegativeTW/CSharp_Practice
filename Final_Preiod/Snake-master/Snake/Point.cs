@@ -6,27 +6,20 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    /// <summary>
-    /// An x-y coordinate pair representing a location point
-    /// </summary>
+    // 座標處理系統
     class Point
     {
-        public int X
-        {
-            get;
-            set;
-        }
-        public int Y
-        {
+        public int X {
             get;
             set;
         }
 
-        /// <summary>
-        /// Object constructor
-        /// </summary>
-        /// <param name="X">X coordinate of the point</param>
-        /// <param name="Y">Y coordinate of the point</param>
+        public int Y {
+            get;
+            set;
+        }
+
+        // 物件生成
         public Point(int X,int Y)
         {
             this.X = X;

@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    /// <summary>
-    ///  Represents a food pellet, derived from GamePart
-    /// </summary>
+    // 從 GamePart 拉過來
     class FoodPellet : GamePart
     {
-        /// <summary>
-        /// Object constructor
-        /// </summary>
-        /// <param name="X">X coordinate of the food pellet</param>
-        /// <param name="Y">Y coordinate of the food pellet</param>
+        // 生成物件
         public FoodPellet(int X, int Y) : base(X,Y)
         {
            
