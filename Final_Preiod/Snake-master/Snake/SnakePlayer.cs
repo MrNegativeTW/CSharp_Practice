@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+
 
 namespace Snake
 {
-    /// <summary>
-    /// Directional representation of player
-    /// </summary>
+    // 方向系統
     public enum Direction
     {
         left,
@@ -20,61 +20,47 @@ namespace Snake
         none
     }
 
-    /// <summary>
-    /// Class containing the controller logic for the player
-    /// </summary>
+    // 控制系統
     class SnakePlayer
     {
-        private List<BodyPart> m_SnakeParts = new List<BodyPart>(); // Collection of current snake body parts
-        private const int m_CircleRadius = 20; // Determines body part size
-        private Direction m_MoveDirection = Direction.none; // Direction of the head
-        private int m_PendingSegments; // Number of body parts in queue to be added to the snake
-        private SnakeForm GameForm = null; // Stores the GUI form
+        private List<BodyPart> m_SnakeParts = new List<BodyPart>(); 
+        private const int m_CircleRadius = 20; // 蛇身大小
+        private Direction m_MoveDirection = Direction.none; // 蛇頭方向
+        private int m_PendingSegments;
+        private SnakeForm GameForm = null; 
 
-        /// <summary>
-        /// Object constructor
-        /// </summary>
-        /// <param name="Form">GUI form for the game</param>
+        // 物件生成
         public SnakePlayer(SnakeForm Form)
         {
-            // Add 3 body parts to the snake because the snake begins small
+            // 蛇身初始化，3粒
             m_SnakeParts.Add(new BodyPart(100, 0, Direction.right));
             m_SnakeParts.Add(new BodyPart(80, 0, Direction.right));
             m_SnakeParts.Add(new BodyPart(60, 0, Direction.right));
 
-            // Need to give an initial direction
+            // 初始方向
             m_MoveDirection = Direction.right;
 
-            // Currently no body parts queued to be added
+            // 無待生成蛇身
             m_PendingSegments = 0;
             GameForm = Form;
         }
 
-        /// <summary>
-        /// Adds snake body parts
-        /// </summary>
-        /// <param name="Number">Number of body parts to add</param>
-        public void AddBodySegments(int Number)
-        {
-            // Increments m_PendingSegments as it will be processed and the parts added in the next call to MovePlayer()
+        // 加入蛇身
+        public void AddBodySegments(int Number) {
             m_PendingSegments += Number;
         }
 
-        /// <summary>
-        /// Moves the snake and processes any pending body segments to be created. Called every frame.
-        /// </summary>
+        // 蛇蛇動起來
         public void MovePlayer()
         {
-            // Adds any pending body parts. Note that this processes one body part at a time;
-            // if m_PendingSegments > 1, it will require more than one frame to process completely.
             if (m_PendingSegments > 0)
             {
-                Point LastPos = m_SnakeParts.Last().GetPosition(); // Adds the body part to the tail
+                Point LastPos = m_SnakeParts.Last().GetPosition(); //蛇身加到尾巴去
                 m_SnakeParts.Add(new BodyPart(LastPos.X,LastPos.Y));
                 m_PendingSegments--;
             }
             
-            m_SnakeParts[0].m_Dir = m_MoveDirection; // Set the head direction
+            m_SnakeParts[0].m_Dir = m_MoveDirection; //設定蛇頭方向
 
             // 移動蛇蛇的身體
             for (int i = m_SnakeParts.Count-1; i>=0 ;i--)
@@ -97,13 +83,12 @@ namespace Snake
                         break;
                 }
 
-                // Set the direction of the next part to be the direction of the previous
-                // for snake-like movement
+                // 設定下一蛇身轉彎方向
                 if (i > 0)
                         m_SnakeParts[i].m_Dir = m_SnakeParts[i - 1].m_Dir;
             }
-            if (IsSelfIntersecting()) // Check for collisions with itself
-                OnHitSelf(); // If so, trigger the game-over screen
+            if (IsSelfIntersecting()) // 偵測自撞
+                OnHitSelf();
         }
 
         // 偵測自撞
@@ -111,12 +96,11 @@ namespace Snake
             // 檢查每一部位與其他部位是否香蕉
             for(int i=0;i < m_SnakeParts.Count;i++) {
                 for (int j = 0;j < m_SnakeParts.Count; j++) {
-                    if(i == j) // Do not want to check a body part with itself
+                    if(i == j) 
                         continue;
                     BodyPart part1 = m_SnakeParts[i];
                     BodyPart part2 = m_SnakeParts[j];
 
-                    // Collision check logic
                     if ((new Rectangle(part1.GetPosition().X, part1.GetPosition().Y, m_CircleRadius, m_CircleRadius)).IntersectsWith(
                         new Rectangle(part2.GetPosition().X, part2.GetPosition().Y, m_CircleRadius, m_CircleRadius)))
                         return true;
@@ -143,18 +127,12 @@ namespace Snake
             m_MoveDirection = Dir;
         }
 
-        /// <summary>
-        /// Determines whether any body part is intersecting with the given rectangle
-        /// </summary>
-        /// <param name="rect">The rectangle to check intsections with</param>
-        /// <returns>Whether there was an intersection</returns>
         public bool IsIntersectingRect(Rectangle rect)
         {
-            foreach(BodyPart Part in m_SnakeParts) // Check each snake body part
+            foreach(BodyPart Part in m_SnakeParts)
             {
                 Point PartPos = Part.GetPosition();
 
-                // Check rectangle intersection with body part
                 if (rect.IntersectsWith(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius, m_CircleRadius)))
                     return true;
             }
@@ -167,6 +145,33 @@ namespace Snake
             GameForm.ToggleTimer(); // 啟動暫停系統 - 關閉
             MessageBox.Show("撞牆" ,"GAME OVER");
             GameForm.ResetGame();
+
+            /*
+            XmlDocument doc = new XmlDocument();
+            doc.Load("settings.xml");
+            // 選擇節點
+            XmlNode Money = doc.SelectSingleNode("Settings/Money");
+            // 取得節點 欄位
+            XmlElement MoneyElement = (XmlElement)Money;
+            // 取得節點 內容
+            string MoneyData = MoneyElement.GetAttribute("value");
+            // 取得節點 屬性
+            XmlAttribute MoneyAttribute = MoneyElement.GetAttributeNode("value");
+            // 列出節點內的屬性
+            XmlAttributeCollection Moneyattribute = MoneyElement.Attributes;
+            foreach (XmlAttribute item in Moneyattribute)
+            {
+                if (item.Value == "0")
+                {
+                    MessageBox.Show("您未下注，無獎無罰");
+                } else if (score < item.Value) { //BUG - 變數無法存取
+                    MessageBox.Show("分數比下注少喔");
+                }
+
+            }
+            */
+
+
         }
 
         // 結束狀況 - 自撞
@@ -177,34 +182,24 @@ namespace Snake
             GameForm.ResetGame();
         }
 
-        /// <summary>
-        /// Called per frame to render the snake body parts
-        /// </summary>
-        /// <param name="canvas">The graphics object to render on</param>
+        //畫圖時間
         public void Draw(Graphics canvas)
         {
             Brush SnakeColor = Brushes.Black;
-            List<Rectangle> Rects = GetRects(); // Get the snake body parts, represented as rectangles
-            foreach(Rectangle Part in Rects) // Draw each snake body part
+            List<Rectangle> Rects = GetRects();
+            foreach(Rectangle Part in Rects) 
             {
-                canvas.FillEllipse(SnakeColor, Part); // Draw the snake parts as ellipses
+                canvas.FillEllipse(SnakeColor, Part);
             }
         }
 
        
 
-        /// <summary>
-        /// Gets the snake body parts, represented as rectangles
-        /// </summary>
-        /// <returns>A list of snake body parts represented as rectangles</returns>
-        public List<Rectangle> GetRects()
-        {
+        //取得蛇身
+        public List<Rectangle> GetRects() {
             List<Rectangle> Rects = new List<Rectangle>();
-            foreach (BodyPart Part in m_SnakeParts) // Return all body parts
-            {
+            foreach (BodyPart Part in m_SnakeParts)  { 
                 Point PartPos = Part.GetPosition();
-
-                // Every iteration, add a rectangle to the ongoing list representing the body part
                 Rects.Add(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius, m_CircleRadius));
             }
             return Rects;

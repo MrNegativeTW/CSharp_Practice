@@ -17,7 +17,7 @@ namespace Snake
         SnakePlayer Player1;
         FoodManager FoodMngr;
         Random r = new Random();
-        private int score = 0;
+        public static int score = 0;
         public SnakeForm()
         {
             InitializeComponent();
@@ -28,8 +28,6 @@ namespace Snake
             FoodMngr.AddRandomFood(10);
             scoreText.Text = score.ToString();
         }
-
-        
 
         public void ResetGame()
         {
@@ -132,6 +130,7 @@ namespace Snake
             // 讀取設定檔
             XmlDocument doc = new XmlDocument();
             doc.Load("settings.xml");
+            
             // 選擇節點
             XmlNode Window = doc.SelectSingleNode("Settings/Window");
             // 取得節點 欄位
@@ -149,7 +148,7 @@ namespace Snake
                     this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 }
             }
-
+            
             // --設定背景變色--
             // 選擇節點
             XmlNode BackColor = doc.SelectSingleNode("Settings/BackColor");
@@ -165,14 +164,28 @@ namespace Snake
                 if (item.Value == "enable") {
                     //背景變色
                     rgb();
-                }/* else if (item.Value == "disable") {
-                    MessageBox.Show("Disable");
-                    // 背景不變色，暫時隱藏
-                }*/
+                }
             }
 
-
-
+            // --設定分數--
+            // 選擇節點
+            XmlNode Money = doc.SelectSingleNode("Settings/Money");
+            // 取得節點 欄位
+            XmlElement MoneyElement = (XmlElement)Money;
+            // 取得節點 內容
+            string MoneyData = MoneyElement.GetAttribute("value");
+            // 取得節點 屬性
+            XmlAttribute MoneyAttribute = MoneyElement.GetAttributeNode("value");
+            // 列出節點內的屬性
+            XmlAttributeCollection Moneyattribute = MoneyElement.Attributes;
+            foreach (XmlAttribute item in Moneyattribute) {
+                if (item.Value == "0") {
+                    expectScoreText.Text = "N/A";
+                } else {
+                    expectScoreText.Text = item.Value;
+                }
+                
+            }
 
         }
 
@@ -185,7 +198,6 @@ namespace Snake
                 await Task.Delay(250);
             } while (true);
         }
-
 
         private void exit_btn_Click(object sender, EventArgs e) {
             this.Close();

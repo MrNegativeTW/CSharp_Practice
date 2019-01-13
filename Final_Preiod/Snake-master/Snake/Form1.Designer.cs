@@ -35,6 +35,8 @@
             this.ScoreLbl = new System.Windows.Forms.Label();
             this.exit_btn = new System.Windows.Forms.Button();
             this.scoreText = new System.Windows.Forms.Label();
+            this.expectScore = new System.Windows.Forms.Label();
+            this.expectScoreText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GameCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,11 +102,34 @@
             this.scoreText.Text = "label1";
             this.scoreText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // expectScore
+            // 
+            this.expectScore.AutoSize = true;
+            this.expectScore.Font = new System.Drawing.Font("微軟正黑體", 11.25F);
+            this.expectScore.Location = new System.Drawing.Point(391, 546);
+            this.expectScore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.expectScore.Name = "expectScore";
+            this.expectScore.Size = new System.Drawing.Size(80, 19);
+            this.expectScore.TabIndex = 7;
+            this.expectScore.Text = "預期分數 : ";
+            // 
+            // expectScoreText
+            // 
+            this.expectScoreText.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expectScoreText.Location = new System.Drawing.Point(478, 535);
+            this.expectScoreText.Name = "expectScoreText";
+            this.expectScoreText.Size = new System.Drawing.Size(90, 40);
+            this.expectScoreText.TabIndex = 8;
+            this.expectScoreText.Text = "expectScoreText";
+            this.expectScoreText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SnakeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 580);
+            this.ClientSize = new System.Drawing.Size(733, 580);
+            this.Controls.Add(this.expectScoreText);
+            this.Controls.Add(this.expectScore);
             this.Controls.Add(this.scoreText);
             this.Controls.Add(this.exit_btn);
             this.Controls.Add(this.ScoreLbl);
@@ -131,6 +156,8 @@
         private System.Windows.Forms.Label ScoreLbl;
         private System.Windows.Forms.Button exit_btn;
         private System.Windows.Forms.Label scoreText;
+        private System.Windows.Forms.Label expectScore;
+        private System.Windows.Forms.Label expectScoreText;
     }
 }
 

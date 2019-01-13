@@ -10,30 +10,29 @@ namespace Snake
     // 食物生成系統
     class FoodManager
     {
-        private Random r = new Random(); // Used for generating random variables in this class
-        private List<FoodPellet> m_FoodPellets = new List<FoodPellet>(); // Collection of all food pellets actively in the game
+        private Random r = new Random();
+
+        //確認還活著的食物
+        private List<FoodPellet> m_FoodPellets = new List<FoodPellet>();
+
+        //食物大小
         private const int m_CircleRadius = 20; // Determines food pellet size
-        private int m_GameWidth; // Game window size in pixels to ensure the program draws within the screen
+
+        //以 Pixel 表示大小單位，確保不會超出畫
+        private int m_GameWidth;
         private int m_GameHeight;
 
-        /// <summary>
-        /// Object constructor
-        /// </summary>
-        /// <param name="GameWidth">Pixel width of the game window</param>
-        /// <param name="GameHeight">Pixel height of the game window</param>
+        // 物件生成
         public FoodManager(int GameWidth,int GameHeight)
         {
+            //寬度和高度
             m_GameWidth = GameWidth;
             m_GameHeight = GameHeight;
         }
 
-        /// <summary>
-        /// Draws the food pellets
-        /// </summary>
-        /// <param name="Canvas">Canvas object (game screen) to draw on</param>
-        public void Draw(Graphics Canvas)
-        {
-            // Iterate over all food pellets and draw them
+        // 畫圖時間
+        public void Draw(Graphics Canvas) {
+            // 跑一遍食物然後畫畫
             Brush SnakeColor = Brushes.BlueViolet;
             foreach (FoodPellet Pellet in m_FoodPellets)
             {
@@ -42,48 +41,44 @@ namespace Snake
             }
         }
 
-        /// <summary>
-        /// Adds a food pellet to the game
-        /// </summary>
+        // 將食物丟到畫面上
         public void AddRandomFood()
         {
-            int X = r.Next(m_GameWidth - m_CircleRadius); // Random x/y positions
+            // 隨機位置
+            int X = r.Next(m_GameWidth - m_CircleRadius); 
             int Y = r.Next(m_GameHeight - m_CircleRadius);
-            int ix = (X / m_CircleRadius); //Use truncating to snap to grid
+
+            int ix = (X / m_CircleRadius);
             int iy = Y / m_CircleRadius;
-            X = ix * m_CircleRadius; // Grid x/y positions
+
+            // 定位
+            X = ix * m_CircleRadius;
             Y = iy * m_CircleRadius;
-            m_FoodPellets.Add(new FoodPellet(X, Y)); // Save pellet object
+
+            // 食物存回陣列
+            m_FoodPellets.Add(new FoodPellet(X, Y));
         }
 
-        /// <summary>
-        /// Override to add food in quantities
-        /// </summary>
-        /// <param name="Amount">Amount of food to add</param>
+        //
         public void AddRandomFood(int Amount)
         {
-            for(int i=0;i<Amount;i++)
+            for(int i = 0; i < Amount; i++)
             {
                 AddRandomFood();
             }
         }
 
-        /// <summary>
-        /// Determines whether the given rectangle intersects with any existing food pellets
-        /// </summary>
-        /// <param name="rect">The rectangle to check for collision with food pellets</param>
-        /// <param name="RemoveFood">Whether to remove the food pellets intersecting with the rectangle</param>
-        /// <returns>Whether there was an intersection</returns>
+        // 吃到食物偵測器
         public bool IsIntersectingRect(Rectangle rect, bool RemoveFood)
         {
-            foreach (FoodPellet Pellet in m_FoodPellets) // Check each food pellet
+            foreach (FoodPellet Pellet in m_FoodPellets) // 跑一遍食物陣列
             {
                 Point PartPos = Pellet.GetPosition();
 
-                // Check rectangle intersection with food pellet
+                // 檢查是否碰到食物
                 if (rect.IntersectsWith(new Rectangle(PartPos.X, PartPos.Y, m_CircleRadius, m_CircleRadius)))
                 {
-                    if (RemoveFood) // Remove food pellet if RemoveFood parameter is true
+                    if (RemoveFood)
                         m_FoodPellets.Remove(Pellet);
                     return true;
                 }
